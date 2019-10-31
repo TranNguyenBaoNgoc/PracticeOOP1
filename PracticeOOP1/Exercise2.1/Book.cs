@@ -9,14 +9,14 @@ namespace Exercise2._1
     public class Book
     {
         private string Name;
-        private Author Author;
+        private Author [] Authors;
         private double Price;
         private int Qty = 0;
 
-        public Book(String name, Author author, double price, int qty = 0)
+        public Book(String name, Author [] author, double price, int qty = 0)
         {
             this.Name = name;
-            this.Author = author;
+            this.Authors = author;
             this.Price = price;
             this.Qty = qty;
         }
@@ -26,9 +26,9 @@ namespace Exercise2._1
             return this.Name;
         }
 
-        public Author GetAuthor()
+        public Author [] GetAuthors()
         {
-            return this.Author;
+            return this.Authors;
         }
 
         public double GetPrice()
@@ -52,21 +52,21 @@ namespace Exercise2._1
         }
         public override string ToString()
         {
-
-            return string.Format("Book[Name = {0}, {1}, price={2}, Qty={3}]", this.Name, this.Author, this.Price, this.Qty);
+            string[] StrAuthors = new string[this.Authors.Length];
+            for (int i = 0; i < this.Authors.Length; i++)
+            {
+                StrAuthors[i] = this.Authors[i].ToString();
+            }
+            return string.Format("Book[Name = {0}, authors = {{{1}, price={2}, Qty={3}]", this.Name, string.Join(",", StrAuthors), this.Price, this.Qty);
         }
-
-        public String GetAuthorName ()
+        public string GetAuthorNames()
         {
-            return this.Author.GetName();
-        }
-        public String GetAuthorEmail()
-        {
-            return this.Author.GetEmail();
-        }
-        public char GetAuthorGender()
-        {
-            return this.Author.GetGender();
+            string[] StrAuthors = new string[this.Authors.Length];
+            for (int i = 0; i < this.Authors.Length; i++)
+            {
+                StrAuthors[i] = this.Authors[i].ToString();
+            }
+            return string.Join(",", StrAuthors);
         }
     }
 }
